@@ -1,0 +1,184 @@
+#:kivy 2.1.0
+#:import Factory kivy.factory.Factory
+
+<MainMenu>:
+
+	Label:
+		id: display
+		font_size: root.width/10
+		center_x: root.width /2
+		top: root.top * 9/10
+		text: str(root.selected)
+
+	Label:
+		id: show_expression
+		halign: 'center'
+		font_size: root.width/20
+		center_x: root.width /2
+		top: root.top
+		text: str(root.expression)
+
+	Button:
+		id: menu
+		font_size: root.width/40
+		size: (root.width/10), (root.width/10)
+		right: root.right
+		top: root.top
+		text: "Settings"
+		on_release: Factory.SettingsMenu().open()
+
+	GridLayout:
+		rows: 5
+		cols: 4
+		size: root.width, root.height* 7/10
+
+		Button:
+			text: "+/-"
+			font_size: 30
+			size_hint: 0.2, 0.2
+			on_release: root.nega()
+		Button:
+			text: "BS"
+			font_size: 30
+			size_hint: 0.2, 0.2
+			on_release: root.bspace()
+
+		Button:
+			text: "CE"
+			font_size: 30
+			size_hint: 0.2, 0.2
+			on_release: root.clear_input()
+		Button:
+			text: "C"
+			font_size: 30
+			size_hint: 0.2, 0.2
+			on_release: root.clear_all()
+		Button:
+			text: "9"
+			font_size: 30
+			size_hint: 0.2, 0.2
+			on_release: root.num_in('9')
+
+		Button:
+			text: "8"
+			font_size: 30
+			size_hint: 0.2, 0.2
+
+			on_release: root.num_in('8')
+
+		Button:
+			text: "7"
+			font_size: 30
+			size_hint: 0.2, 0.2
+
+			on_release: root.num_in('7')
+
+		Button:
+			text: "+"
+			font_size: 30
+			size_hint: 0.2, 0.2
+	
+			on_release: root.operate('+', 'add')
+
+		Button:
+			text: "6"
+			font_size: 30
+			size_hint: 0.2, 0.2
+			on_release: root.num_in('6')
+
+		Button:
+			text: "5"
+			font_size: 30
+			size_hint: 0.2, 0.2
+
+			on_release: root.num_in('5')
+
+		Button:
+			text: "4"
+			font_size: 30
+			size_hint: 0.2, 0.2
+
+			on_release: root.num_in('4')
+
+		Button:
+			text: "-"
+			font_size: 30
+			size_hint: 0.2, 0.2
+	
+			on_release: root.operate('-', 'subtract')
+		
+		Button:
+			text: "3"
+			font_size: 30
+			size_hint: 0.2, 0.2
+			on_release: root.num_in('3')
+
+		Button:
+			text: "2"
+			font_size: 30
+			size_hint: 0.2, 0.2
+
+			on_release: root.num_in('2')
+
+		Button:
+			text: "1"
+			font_size: 30
+			size_hint: 0.2, 0.2
+			on_release: root.num_in('1')
+
+		Button:
+			text: "*"
+			font_size: 30
+			size_hint: 0.2, 0.2
+
+			on_release: root.operate('*', 'multiply')
+
+		Button:
+			text: "0"
+			font_size: 30
+			size_hint: 0.2, 0.2
+			on_release: root.zero()
+
+		Button:
+			text: "."
+			font_size: 30
+			size_hint: 0.2, 0.2
+			on_release: root.deci()
+
+		Button:
+			text: "="
+			font_size: 30
+			size_hint: 0.2, 0.2
+			on_release: root.calc()
+
+		Button:
+			text: "÷"
+			font_size: 30
+			size_hint: 0.2, 0.2
+
+			on_release: root.operate('÷', 'divide')
+
+<SettingsMenu@Popup>:
+	auto_dismiss: False
+	title: "Resolution"
+	title_align: 'center'
+	size_hint: 0.8, 0.9
+	GridLayout:
+		rows: 4
+		cols: 1
+
+		Button:
+			text: "400x600"
+			on_release: root.change_resolution(400, 600)
+
+		Button:
+			text: "600x800"
+			on_release: root.change_resolution(600, 800)
+
+		Button:
+			text: "800x600"
+			on_release: root.change_resolution(800, 600)
+
+		Button:
+			text:"Back"
+			on_release: root.dismiss()
